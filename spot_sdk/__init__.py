@@ -52,7 +52,7 @@ class Feed(object):
     if hasattr(self, 'password'):
       return self.BASE_URL + self.key + '/message.json'
     else:
-      return self.BASE_URL + self.key + '/message.json?feedPassword=' + password
+      return self.BASE_URL + self.key + '/message.json?feedPassword=' + self.password
 
   def first(self):
       return self.messages[0]

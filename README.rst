@@ -62,6 +62,28 @@ Basic usage
     datetime(2017, 1, 1, 0, 42, 0)
 
 
+Basic usage for private feeds (requiring password)
+-----------
+::
+
+    >>> from spot_sdk import Feed
+    >>> api_key = 'abcdefghijklmnopqrstuvwxy01234567'
+    >>> password = 'your-password'
+    >>> feed = Feed(api_key, password)
+    >>> feed.collect()
+    >>> feed.count()
+    6
+    >>> foo.messages
+    [<spot_sdk.Message object at 0x10fd7f630>, <spot_sdk.Message object at 0x10fd7f6a0>...
+    >>> feed.first().type
+    'UNLIMITED-TRACK'
+    >>> feed.last().battery_state
+    'GOOD'
+    >>> feed.messages[0].latitude
+    42.000
+    >>> feed.last().datetime
+    datetime(2017, 1, 1, 0, 42, 0)
+
 Running Test
 ------------
 ::

@@ -37,10 +37,22 @@ class Feed(object):
     self.key      = key
     self.messages = []
 
+  def __init__(self, key, password):
+    if not isinstance(key, str):
+      raise SpotSDKError('key should be string')
+    if not isinstance(password, str):
+      raise SpotSDKError('password should be string')
+    self.key      = key
+    self.password = password
+    self.messages = []
+
   BASE_URL = 'https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/'
 
   def __request_url(self):
-    return self.BASE_URL + self.key + '/message.json'
+    if hasattr(self, 'password'):
+      return self.BASE_URL + self.key + '/message.json?feedPassword=' + self.password
+    else:
+      return self.BASE_URL + self.key + '/message.json'
 
   def first(self):
       return self.messages[0]

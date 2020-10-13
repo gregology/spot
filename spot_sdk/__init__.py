@@ -50,9 +50,9 @@ class Feed(object):
 
   def __request_url(self):
     if hasattr(self, 'password'):
-      return self.BASE_URL + self.key + '/message.json'
-    else:
       return self.BASE_URL + self.key + '/message.json?feedPassword=' + self.password
+    else:
+      return self.BASE_URL + self.key + '/message.json'
 
   def first(self):
       return self.messages[0]
